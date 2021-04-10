@@ -32,18 +32,19 @@ public class WechatAuthApplication {
     }
 
     @GetMapping("/checkToken")
-    public boolean checkToken(HttpServletRequest request) {
+    public String checkToken(HttpServletRequest request) {
         String signature = request.getParameter("signature");
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
+        String echostr = request.getParameter("echostr");
         String token = TOKEN;
-        log.info("signature:{} timestamp: {} nonce:{} token:{}", signature, timestamp, nonce, token);
+        log.info("signature:{} timestamp: {} nonce:{} token:{} echostr:{}", signature, timestamp, nonce, token, echostr);
         if (StringUtils.isEmpty(signature) || StringUtils.isEmpty(timestamp) || StringUtils.isEmpty(nonce)) {
-            return false;
+            return "fail";
         }
         String sign = WechatSHA1.getSHA1(token, timestamp, nonce);
         log.info("加密后的签名为{}", sign);
-        return Objects.equals(sign, signature) ;
+        return Objects.equals(sign, signature) ? echostr : "fail";
 
     }
 
