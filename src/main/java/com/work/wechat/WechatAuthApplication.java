@@ -33,6 +33,15 @@ import java.util.Objects;
 /**
  * 微信网页授权流程
  * 文档地址：https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html#0
+ * 配置相关
+ *  接口配置信息
+ *      https://go.3083.work/wechat/checkToken
+ *      wechat_public_account_token
+ *  JS接口安全域名
+ *      go.3083.work
+ *  网页授权获取用户基本信息
+ *      go.3083.work
+ *
  * 业务流程
  * - 引导用户点击某个界面按钮（界面显示：该界面由XX公司开发，需要授权获取用户昵称、头像权限）
  * 请求接口：GET https://open.weixin.qq.com/connect/oauth2/authorize?
